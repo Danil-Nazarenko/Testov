@@ -1,50 +1,85 @@
-# React + TypeScript + Vite
+# Проект на React с использованием TanStack Router и MUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект представляет собой SPA-приложение, которое использует React, TanStack Router и MUI для создания интерфейса с несколькими страницами и адаптивным дизайном.
 
-Currently, two official plugins are available:
+ # Установка зависимостей
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 1. Клонируйте репозиторий на свой локальный компьютер:
+```
+bash
+git clone https://github.com/your-username/your-project.git
+```
+-  2. Перейдите в дерикторию проекта:
+```
+bash
+cd your-project
+```
+- 3. установите зависимость с помощью NPM
+```
+bash
+npm install
+```
+  # Запуск проекта локально
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+После установки зависимостей, чтобы запустить проект локально, выполните команду:
+```
+bash
+npm run dev
+```
+# Структура проекта
+```
+src
+| components
+| | FlatChart.tsx
+| | FolderForm.tsx
+| | layout.tsx
+| | Menu.tsx
+| | ResizablePanel.tsx
+| | TreeView.tsx
+| pages
+| | ChartPage.tsx
+| | CreateFolderPage.tsx
+| | HomePage.tsx
+| | TreePage.tsx
+| router
+| | routes.tsx
+| styles
+| | global.css
+| utils
+| | folderUtils.ts
+| App.tsx
+| main.tsx
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+# Описание ключевых компонентов:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. **`components/`** — Папка с основными компонентами:
+   - `FlatChart.tsx`: Компонент для отображения графиков.
+   - `FolderForm.tsx`: Форма для создания новой папки.
+   - `layout.tsx`: Основной компонент макета, который включает навигационное меню и пространство для контента.
+   - `Menu.tsx`: Компонент для создания меню навигации между страницами.
+   - `ResizablePanel.tsx`: Компонент для создания панели, которую можно изменять в размерах.
+   - `TreeView.tsx`: Компонент для отображения и управления деревом папок.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+2. **`pages/`** — Папка с компонентами страниц:
+   - `ChartPage.tsx`: Страница для отображения графиков.
+   - `CreateFolderPage.tsx`: Страница для создания новой папки.
+   - `HomePage.tsx`: Главная страница.
+   - `TreePage.tsx`: Страница для отображения дерева папок.
+
+3. **`router/`** — Папка, содержащая конфигурацию маршрутов приложения:
+   - `routes.tsx`: Конфигурация маршрутов с использованием TanStack Router.
+
+4. **`styles/`** — Папка для хранения глобальных стилей:
+   - `global.css`: Глобальные стили для всего приложения.
+
+5. **`utils/`** — Папка с утилитами, которые могут использоваться в разных частях приложения:
+   - `folderUtils.ts`: Утилиты для работы с папками.
+
+6. **`App.tsx`** — Основной компонент, который рендерит компоненты с маршрутизацией.
+7. **`main.tsx`** — Точка входа в приложение, где подключаются глобальные стили и осуществляется рендеринг компонента `App`.
+
+### Как это работает:
+- **Маршруты**: Все страницы приложения определены в файле `routes.tsx`. Для каждой страницы создается отдельный компонент, который затем подключается через маршруты.
+- **Компоненты**: Компоненты разделены по папкам в зависимости от их роли в приложении. Компоненты, отвечающие за UI, такие как `Menu`, `TreeView`, `ResizablePanel`, хранятся в папке `components/`.
+- **Страницы**: Страницы (`HomePage`, `ChartPage`, `TreePage`, `CreateFolderPage`) содержат более высокоуровневую логику и используют компоненты из папки `components/`.
